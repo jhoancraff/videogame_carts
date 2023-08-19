@@ -2,6 +2,12 @@
 const canvas = document.getElementById('game');
 const game = canvas.getContext('2d');
 
+//Selecciona los id de los botones para obtener el movimiento del jugador por medio del click.
+const btnUp = document.querySelector('#up')
+const btnleft = document.querySelector('#left')
+const btnRight = document.querySelector('#right')
+const btnDown = document.querySelector('#down')
+
 // Declara dos variables: canvaSize y elementSize.
 let canvaSize;
 let elementSize;
@@ -9,6 +15,33 @@ let elementSize;
 // Agrega un evento listener al elemento window para el evento "load" y al evento "resize". La función que se llama cuando se produce uno de estos eventos es setResponsive().
 window.addEventListener('load', setResponsive);
 window.addEventListener('resize', setResponsive);
+
+// Agrega un evento listener'click' para los botones de la pagina  
+btnUp.addEventListener('click', moveUp);
+btnDown.addEventListener('click', moveDown);
+btnleft.addEventListener('click', moveleft);
+btnRight.addEventListener('click', moveRight);
+
+//Ejecuta el evento listener cuando se presiona una tecla y evalua para ejecutar algunas de la fuciones de movimiento
+document.addEventListener('keydown', function(event) {
+    if(event.key == 'ArrowUp'){
+        moveUp()
+    }
+    else if(event.key == 'ArrowDown'){
+        moveDown()
+    }
+    else if(event.key == 'ArrowRight'){
+        moveRight()
+    }
+    else if(event.key == 'ArrowLeft'){
+        moveleft()
+    }
+    else return false;
+    
+    
+  });
+
+
 
 // La función setResponsive() determina el tamaño del lienzo en función de la altura y el ancho de la ventana del navegador.
 function setResponsive(){
@@ -57,10 +90,21 @@ function starGame(){
             const posX = elementSize * (rowI + 1)
     
             // Se dibuja el texto en el lienzo.
-            game.fillText(emoji, posY , rowI)
+            game.fillText(emoji, posY , posX)
         })
     })
     }
     
-    
-
+//funciones de movimiento del jugador    
+function moveUp(){
+    console.log('Arriba')
+}    
+function moveDown(){
+    console.log('Abajo')
+}
+function moveRight(){
+    console.log('Derecha')
+}
+function moveleft(){
+    console.log('Izquierda')
+}
