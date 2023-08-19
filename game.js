@@ -8,25 +8,6 @@ let elementSize;
 window.addEventListener('load', setResponsive);
 window.addEventListener('resize', setResponsive)
 
-function starGame(){
-    const map = maps[2] 
-    const mapRows =  map.trim().split('\n')
-    const mapRowsCol = mapRows.map(row => row.trim().split('')) 
-    
-    for (let row = 1; row <= 10; row++) {
-            for (let col = 0; col <= 10; col++) {
-             
-                
-                game.fillText(emojis[mapRowsCol[row - 1][col]],elementSize * col,elementSize*row);   
-                
-            }
-                
-        }
-        
-        console.log(map,mapRows,mapRowsCol)
-        
-}
-
 function setResponsive(){
     
     if(window.innerHeight > innerWidth){
@@ -42,4 +23,31 @@ function setResponsive(){
     
     starGame()
 
+}
+
+function starGame(){
+    const map = maps[2] 
+    const mapRows =  map.trim().split('\n')
+    const mapRowsCol = mapRows.map(row => row.trim().split('')) 
+    
+   mapRowsCol.forEach((row, rowI) => {
+        row.forEach((col, colI) => {
+            const emoji = emojis[col]
+            const posY = elementSize * colI
+           // const posX = elementSize * (rowI + 1)
+            game.fillText(emoji, posY , rowI * 40)
+        })
+    })
+    
+     const array1 = ['a', 'b', 'c'];
+
+       // array1.forEach((element) => console.log(element));
+        
+}
+
+
+document.addEventListener("keydown", keyDownHandler);
+
+function keyDownHandler(event) {
+  console.log(event.key)
 }
